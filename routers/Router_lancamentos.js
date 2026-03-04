@@ -4,7 +4,7 @@ const Controller_lancamentos = require('../controllers/Controller_lancamentos');
 const Controller_extrato = require('../controllers/Controller_extrato');
 
 // View para cadastrar novo lancamento
-router.get('/criar_lancamento', Controller_lancamentos.criar_lancamento);
+router.get('/', Controller_lancamentos.criar_lancamento);
 
 // Salva novo lançamento no Banco de Dados
 router.post('/salvar_lancamento', Controller_lancamentos.salvar_lancamento);

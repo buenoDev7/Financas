@@ -20,7 +20,7 @@ module.exports = {
             descricao: descricao,
             pessoa: pessoa
         }).then(() => {
-            res.redirect('/criar_lancamento')
+            res.redirect('/')
             console.log('\n✅ Lancamento registrado com sucesso!');
         });
     },
