@@ -1,0 +1,36 @@
+:root {
+    --bg-color: #121212;
+    --card-bg-color: #292929;
+    --text-color: #e0e0e0;
+    --sub-text-color: #a0a0a0;
+    --primary-green: #4caf50;
+    --primary-red: #f44336;
+    --border-color: #333;
+    --input-bg-color: #2a2a2a;
+    --button-bg-color: var(--primary-green);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.link-voltar {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}

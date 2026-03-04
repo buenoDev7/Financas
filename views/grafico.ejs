@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Despesas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/css/grafico.css">
+    <link rel="shortcut icon" href="/img/icon-graph.png" type="image/x-icon">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- CSS -->
+     <link rel="stylesheet" href="/css/grafico.css">
+    <style>
+        .chart-container { width: 600px; margin: 50px auto; background: #292929; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); filter: drop-shadow(4px 4px 15px #16161d);}
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .total {padding: 5px 15px; border-radius: 5px; color: #f3f3f3; font-weight: semi-bold;}
+    </style>
+</head>
+<body>
+
+    <a href="/extrato" class="text-decoration-none text-white bi bi-arrow-left link-voltar"></a>
+    <div class="chart-container">
+        <div class="header">
+            <h3>
+                <i class="bi bi-bar-chart-line fs-4 text-white"></i>
+                Gráfico de Despesas
+            </h3>
+            <p class="total mb-2 fs-6 text-danger">Total: R$<%= totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2}) %></p>
+        </div>
+        <canvas id="meuGrafico"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('meuGrafico').getContext('2d');
+        
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: <%- JSON.stringify(labels) %>,
+                datasets: [{
+                    data: <%- JSON.stringify(valores) %>,
+                    backgroundColor: [
+                        '#3498db', // Azul
+                        '#2ecc71', // Verde
+                        '#f1c40f', // Amarelo
+                        '#e74c3c', // Vermelho
+                        '#1abc9c', // Turquesa
+                        '#9b59b6', // Roxo Claro
+                        '#34495e'  // Azul acinzentado (para "outros")
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#f3f3f3',
+                            font: { family: 'Poppins', size: 12 },
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a1a1a', 
+                        padding: 12,               
+                        cornerRadius: 8,           
+                        displayColors: true,       
+                        boxPadding: 8,             
+                        bodyFont: { family: 'Poppins', size: 14, weight: '500' },
+                        callbacks: {
+                            title: () => '', 
+                            label: function(context) {
+                                let categoria = context.label || '';
+                                let valor = context.parsed || 0;
+                                let valorFormatado = valor.toLocaleString('pt-BR', { 
+                                    style: 'currency', 
+                                    currency: 'BRL' 
+                                });
+                                return [
+                                    `${categoria}`,
+                                    `${valorFormatado}`
+                                ];
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

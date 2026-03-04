@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrato - Minhas Finanças</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/extrato.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/icon-plus.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="container mt-2">
+        <header class="header">
+            <h1>
+                <i class="bi bi-cash fs-5 text-white"></i> Saldo Atual
+                <p class="d-inline bi bi-eye-slash hideAmount fs-5 ms-2"></p>
+            </h1>
+            
+            <span class="col current-balance valorTotal d-flex align-items-center justify-content-center">
+                <%= saldoTotal.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %>
+            </span>
+        </header>
+
+        <div class="row d-flex flex-row summary justify-content-center">
+            <div class="col-12 summary-card income">
+                <p>+ Entradas</p>
+                <span class="valorTotal">
+                    <%= totalEntradas.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>
+                </span>
+            </div>
+            
+            <div class="col-12 summary-card expense">
+                <p>- Saídas</p>
+                <span class="valorTotal">
+                    <%= totalSaidas.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>
+                </span>
+            </div>
+
+            <div class="col-12 summary-card income">
+                <p>
+                    <i class="bi bi-piggy-bank fs-6"></i> Poupança
+                </p>
+                <span class="valorTotal">
+                    <%= totalPoupanca.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>
+                </span>
+            </div>
+        </div>
+
+        <section class="transactions-list">
+            <h2>
+                <i class="bi bi-file-text fs-6 text-white"> </i>Lançamentos
+            </h2>
+
+            <div class="col col-extrato">
+                <% lancamentos.forEach(lancamento=> { %>
+                    <div class="transaction-item">
+                        <div class="description">
+                            <h3>
+                                <i class="bi bi-tag fs-6 text-white"></i>
+                                <%= lancamento.categoria %> - 
+                                <%= lancamento.pessoa %>
+                            </h3>
+                            <p class="mb-1 fs-6">
+                                <% if (lancamento.tipo === 'Entrada') { %>
+                                    <i class="bi bi-plus fs-5 text-success"></i>
+                                    <%= lancamento.tipo %> - <%= new Date(lancamento.data).toLocaleString('pt-BR', {timeZone: 'UTC'}).slice(0, 10) %>
+                                <% } else if (lancamento.tipo === 'Saída') { %>
+                                    <i class="bi bi-x-lg fs-6 text-danger"></i>
+                                    <%= lancamento.tipo %> - <%= new Date(lancamento.data).toLocaleString('pt-BR', {timeZone: 'UTC'}).slice(0, 10) %>
+                                <% } %> 
+                            </p>
+                            <p>
+                                "<%= lancamento.descricao %>"
+                            </p>
+                            <div class="row">
+                                <div class="col-1 ms-1">
+                                    <a href="/editar_lancamento/<%=lancamento.id%>" class="text-decoration-none" data-bs-toggle="tooltip"
+                                        data-bs-title="Editar" data-bs-placement="bottom">
+                                        <i class="bi bi-pencil fs-6 text-white"></i>
+                                    </a>
+                                </div>
+                                <div class="col-1">
+                                    <form action="del_item" method="POST">
+                                        <input type="hidden" name="id_lancamento" value="<%=lancamento.id %>">
+                                        <button type="submit" class="border-0 bg-transparent btn-delete"
+                                            data-bs-toggle="tooltip" data-bs-title="Excluir" data-bs-placement="bottom">
+                                            <i class="bi bi-trash fs-6 text-white"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="amount <%= lancamento.tipo === 'Saída' ? 'expense' : 'income' %> me-3">
+                            <%= lancamento.tipo==='Saída' ? '-' + new Intl.NumberFormat('pt-BR', { style: 'currency' ,
+                                currency: 'BRL' }).format(lancamento.valor) : '+' + new Intl.NumberFormat('pt-BR', {
+                                style: 'currency' , currency: 'BRL' }).format(lancamento.valor) %>
+                        </span>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+        
+        <a href="/grafico" class="graph-button text-decoration-none">
+            <i class="bi bi-bar-chart-line text-white"></i>
+        </a>
+        <a href="/criar_lancamento" class="add-button text-decoration-none"> + </a>
+        <a href="/limpar_dados" class="del-button text-decoration-none">
+            <p class="mb-0">
+                <i class="bi bi-trash3 text-white"></i>
+            </p>
+        </a>
+        
+    </div>
+    <script>
+        // Exibição de Tooltips
+        document.addEventListener('DOMContentLoaded', function () {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+            // Lógica de Mostrar/Esconder Saldo
+            const valoresParaToggle = document.querySelectorAll('.valorTotal');
+            const hideAmountIcons = document.querySelectorAll('.hideAmount');
+            const valorOculto = "R$****,**";
+            
+            hideAmountIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+
+                    // Itera sobre todos os elementos que devem ter o valor alternado
+                    valoresParaToggle.forEach(valorElemento => {
+                        const isHidden = valorElemento.hasAttribute('data-original-value');
+
+                        if (isHidden) {
+                            // 1. Restaurar o valor original
+                            const originalValue = valorElemento.getAttribute('data-original-value');
+                            valorElemento.textContent = originalValue;
+                            valorElemento.removeAttribute('data-original-value'); // Remove o atributo para indicar que está visível
+
+                        } else {
+                            // 2. Esconder o valor
+                            // Armazena o valor atual (original) em um atributo customizado
+                            valorElemento.setAttribute('data-original-value', valorElemento.textContent.trim());
+                            // Substitui o texto pelo formato camuflado
+                            valorElemento.textContent = valorOculto;
+                        }
+                    });
+
+                    // Altera o ícone de olho para todos os ícones da classe
+                    hideAmountIcons.forEach(i => {
+                        i.classList.toggle('bi-eye-slash'); 
+                        i.classList.toggle('bi-eye');
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
