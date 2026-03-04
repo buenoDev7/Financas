@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const connection = new Sequelize(
     process.env.MYSQLDATABASE,
     process.env.MYSQLUSER,
