@@ -30,7 +30,7 @@
         <header class="header">
             <h2>Novo Lançamento</h2>
         </header>
-        <form id="lancamentoForm" action="/salvar_lancamento" method="POST">
+        <form id="lancamentoForm" action="/salvar_lancamento" method="POST" class="form-control bg-transparent border-0">
             <div class="form-group">
                 <label for="tipo">Tipo</label>
                 <div class="radio-group">
@@ -62,8 +62,11 @@
                             <option value="Poupança">Poupança</option>
                             <option value="Transporte">Transporte</option>
                             <option value="Mercado">Mercado</option>
+                            <option value="Farmácia">Farmácia</option>
                             <option value="Contas Fixas">Contas Fixas</option>
                             <option value="Emergência">Emergência</option>
+                            <option value="Gatos">Gatos</option>
+                            <option value="Casa">Casa</option>
                             <option value="Salário">Outros</option>
                         </select>
                     </div>
@@ -84,6 +87,7 @@
                         <select id="formaDePagamento" name="formaDePagamento" required>
                             <option value="" disabled selected>Selecionar</option>
                             <option value="contaCorrente">Depósito em Conta</option>
+                            <option value="pix">PIX</option>
                             <option value="credito">Cartão de Débito</option>
                             <option value="credito">Cartão de Crédito</option>
                             <option value="dinheiro">Dinheiro Físico</option>
@@ -104,11 +108,13 @@
                     <option value="" disabled selected>Selecionar</option>
                     <option value="Raquel">Raquel</option>
                     <option value="Yan">Yan</option>
+                    <option value="Yan">Beatriz</option>
+                    <option value="Yan">Casa</option>
                 </select>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn-save w-50 border-0">
+                <button type="submit" class="btn-save w-25 border-0">
                     <i class="bi bi-check-lg fs-6 text-white"></i> Registrar
                 </button>
                 <a href="/extrato" class="btn btn-secondary btn-extrato w-50">
