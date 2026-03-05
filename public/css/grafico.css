@@ -22,11 +22,10 @@ body {
     color: var(--text-color);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     min-height: 100vh;
     padding: 20px;
     display: flex;
-    align-items: center;
+    margin-bottom: 150px;
 }
 
 .link-voltar {
