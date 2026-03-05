@@ -101,6 +101,7 @@ body {
     max-height: 35vh;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -109,6 +110,7 @@ body {
 
 ::-webkit-scrollbar-track {
     background: #1e1e1e;
+    margin-bottom: 30px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -242,7 +244,7 @@ body {
 }
 
 /* iPhone 11 e 12 em modo retrato */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 
     .container {
         max-width: 100%;
@@ -266,4 +268,30 @@ body {
         font-size: 0.75rem;
     }
 
+    .graph-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        position: absolute;
+        bottom: 40px;
+        right: 30px;
+    }
+
+    .add-button {
+        width: 40px;
+        height: 40px;
+        font-size: 26px;
+        position: absolute;
+        bottom: 40px;
+        right: 210px;
+    }
+
+    .del-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        position: absolute;
+        bottom: 40px;
+        right: 120px;
+    }
 }

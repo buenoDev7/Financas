@@ -33,7 +33,8 @@
                 <p class="d-inline bi bi-eye-slash hideAmount fs-5 ms-2"></p>
             </h1>
             
-            <span class="col current-balance valorTotal d-flex align-items-center justify-content-center">
+            <span class="col current-balance valorTotal d-flex align-items-center justify-content-center"
+            data-bs-toggle="tooltip" data-bs-title="Poupança: <%= totalPoupanca.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>" data-bs-placement="bottom">
                 <%= saldoTotal.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %>
             </span>
         </header>
@@ -52,19 +53,10 @@
                     <%= totalSaidas.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>
                 </span>
             </div>
-
-            <div class="col-12 summary-card income">
-                <p>
-                    <i class="bi bi-piggy-bank fs-6"></i> Poupança
-                </p>
-                <span class="valorTotal">
-                    <%= totalPoupanca.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>
-                </span>
-            </div>
         </div>
 
         <section class="transactions-list">
-            <h2>
+            <h2 class="py-3">
                 <i class="bi bi-file-text fs-6 text-white"> </i>Lançamentos
             </h2>
 
