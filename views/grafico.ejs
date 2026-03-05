@@ -21,7 +21,7 @@
     <!-- CSS -->
      <link rel="stylesheet" href="/css/grafico.css">
     <style>
-        .chart-container { width: 600px; margin: 50px auto; background: #292929; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); filter: drop-shadow(4px 4px 15px #16161d);}
+        .chart-container { min-width: 50vw; max-width: 40vw; max-height:85vh; margin: auto; background: #292929; padding: 2vw; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); filter: drop-shadow(4px 4px 15px #16161d); display: flex; flex-direction: column;}
         .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .total {padding: 5px 15px; border-radius: 5px; color: #f3f3f3; font-weight: semi-bold;}
     </style>
@@ -35,7 +35,7 @@
                 <i class="bi bi-bar-chart-line fs-4 text-white"></i>
                 Gráfico de Despesas
             </h3>
-            <p class="total mb-2 fs-6 text-danger">Total: R$<%= totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2}) %></p>
+            <p class="total mb-2 fs-3 text-danger">Total: R$<%= totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2}) %></p>
         </div>
         <canvas id="meuGrafico"></canvas>
     </div>
@@ -78,7 +78,7 @@
                         cornerRadius: 8,           
                         displayColors: true,       
                         boxPadding: 8,             
-                        bodyFont: { family: 'Poppins', size: 14, weight: '500' },
+                        bodyFont: { family: 'Poppins', size: 18, weight: '500' },
                         callbacks: {
                             title: () => '', 
                             label: function(context) {
