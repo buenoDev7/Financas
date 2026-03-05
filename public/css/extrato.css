@@ -273,7 +273,7 @@ body {
         height: 40px;
         font-size: 16px;
         position: absolute;
-        bottom: 40px;
+        bottom: 20px;
         right: 30px;
     }
 
@@ -282,7 +282,7 @@ body {
         height: 40px;
         font-size: 26px;
         position: absolute;
-        bottom: 40px;
+        bottom: 20px;
         right: 210px;
     }
 
@@ -291,7 +291,7 @@ body {
         height: 40px;
         font-size: 16px;
         position: absolute;
-        bottom: 40px;
+        bottom: 20px;
         right: 120px;
     }
 }
