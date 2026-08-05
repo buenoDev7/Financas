@@ -71,7 +71,7 @@
                             <option value="Poupança" <%=lancamento.categoria==='Poupança' ? 'selected' : '' %>>Poupança</option>
                             <option value="Salário" <%=lancamento.categoria==='Salário' ? 'selected' : '' %>>Salário</option>
                             <option value="Transporte" <%=lancamento.categoria==='Transporte' ? 'selected' : '' %>>Transporte</option>
-                            <option value="Outro" <%=lancamento.categoria==='Outro' ? 'selected' : '' %>> Outro</option>
+                            <option value="Outro" <%=lancamento.categoria==='Outros' ? 'selected' : '' %>> Outros</option>
                         </select>
                     </div>
                 </div>
@@ -91,12 +91,10 @@
                         <label for="formaDePagamento">Forma de Pagamento</label>
                         <select id="formaDePagamento" name="formaDePagamento" required>
                             <option value="" disabled>Selecionar</option>
-                            <option value="contaCorrente" <%=lancamento.formaDePagamento==='contaCorrente' ? 'selected'
-                                : '' %>>Conta Corrente</option>
-                            <option value="credito" <%=lancamento.formaDePagamento==='credito' ? 'selected' : '' %>
-                                >Cartão de Crédito</option>
-                            <option value="dinheiro" <%=lancamento.formaDePagamento==='dinheiro' ? 'selected' : '' %>
-                                >Dinheiro Físico</option>
+                            <option value="debito" <%=lancamento.formaDePagamento==='debito' ? 'selected' : '' %>>Débito</option>
+                            <option value="credito" <%=lancamento.formaDePagamento==='credito' ? 'selected' : '' %>>Crédito</option>
+                            <option value="dinheiro" <%=lancamento.formaDePagamento==='dinheiro' ? 'selected' : '' %>>Dinheiro</option>
+                            <option value="pix" <%=lancamento.formaDePagamento==='pix' ? 'selected' : '' %>>PIX</option>
                         </select>
                     </div>
                 </div>
