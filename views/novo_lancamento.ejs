@@ -30,7 +30,8 @@
         <header class="header">
             <h2>Novo Lançamento</h2>
         </header>
-        <form id="lancamentoForm" action="/salvar_lancamento" method="POST" class="form-control bg-transparent border-0">
+        <form id="lancamentoForm" action="/salvar_lancamento" method="POST"
+            class="form-control bg-transparent border-0">
             <div class="form-group">
                 <label for="tipo">Tipo</label>
                 <div class="radio-group">
@@ -101,7 +102,7 @@
                 <input type="text" id="descricao" name="descricao" placeholder="Ex: Pagamento da conta de energia"
                     required>
             </div>
-            
+
             <div class="form-group">
                 <label for="pessoa">Pessoa:</label>
                 <select id="pessoa" name="pessoa" required>
@@ -171,6 +172,10 @@
         });
 
         updateColors();
+
+        setInterval(function () {
+            window.location.reload();
+        }, 40000);
     </script>
 </body>
 

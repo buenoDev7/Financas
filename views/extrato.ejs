@@ -32,9 +32,11 @@
                 <i class="bi bi-cash fs-5 text-white"></i> Saldo Atual
                 <p class="d-inline bi bi-eye-slash hideAmount fs-5 ms-2"></p>
             </h1>
-            
+
             <span class="col current-balance valorTotal d-flex align-items-center justify-content-center"
-            data-bs-toggle="tooltip" data-bs-title="Poupança: <%= totalPoupanca.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>" data-bs-placement="bottom">
+                data-bs-toggle="tooltip"
+                data-bs-title="Poupança: <%= totalPoupanca.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %> %>"
+                data-bs-placement="bottom">
                 <%= saldoTotal.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %>
             </span>
         </header>
@@ -46,7 +48,7 @@
                     <%= totalEntradas.toLocaleString('pt-BR', { style: 'currency' , currency: 'BRL' }) %>
                 </span>
             </div>
-            
+
             <div class="col summary-card expense">
                 <p>- Saídas</p>
                 <span class="valorTotal">
@@ -66,25 +68,28 @@
                         <div class="description">
                             <h3>
                                 <i class="bi bi-tag fs-6 text-white"></i>
-                                <%= lancamento.categoria %> - 
-                                <%= lancamento.pessoa %>
+                                <%= lancamento.categoria %> -
+                                    <%= lancamento.pessoa %>
                             </h3>
                             <p class="mb-1 fs-6">
-                                <% if (lancamento.tipo === 'Entrada') { %>
+                                <% if (lancamento.tipo==='Entrada' ) { %>
                                     <i class="bi bi-plus fs-5 text-success"></i>
-                                    <%= lancamento.tipo %> - <%= new Date(lancamento.data).toLocaleString('pt-BR', {timeZone: 'UTC'}).slice(0, 10) %>
-                                <% } else if (lancamento.tipo === 'Saída') { %>
-                                    <i class="bi bi-x-lg fs-6 text-danger"></i>
-                                    <%= lancamento.tipo %> - <%= new Date(lancamento.data).toLocaleString('pt-BR', {timeZone: 'UTC'}).slice(0, 10) %>
-                                <% } %> 
+                                    <%= lancamento.tipo %> - <%= new Date(lancamento.data).toLocaleString('pt-BR',
+                                            {timeZone: 'UTC' }).slice(0, 10) %>
+                                            <% } else if (lancamento.tipo==='Saída' ) { %>
+                                                <i class="bi bi-x-lg fs-6 text-danger"></i>
+                                                <%= lancamento.tipo %> - <%= new
+                                                        Date(lancamento.data).toLocaleString('pt-BR', {timeZone: 'UTC'
+                                                        }).slice(0, 10) %>
+                                                        <% } %>
                             </p>
                             <p>
                                 "<%= lancamento.descricao %>"
                             </p>
                             <div class="row">
                                 <div class="col-1 ms-1">
-                                    <a href="/editar_lancamento/<%=lancamento.id%>" class="text-decoration-none" data-bs-toggle="tooltip"
-                                        data-bs-title="Editar" data-bs-placement="bottom">
+                                    <a href="/editar_lancamento/<%=lancamento.id%>" class="text-decoration-none"
+                                        data-bs-toggle="tooltip" data-bs-title="Editar" data-bs-placement="bottom">
                                         <i class="bi bi-pencil fs-6 text-white"></i>
                                     </a>
                                 </div>
@@ -105,10 +110,10 @@
                                 style: 'currency' , currency: 'BRL' }).format(lancamento.valor) %>
                         </span>
                     </div>
-                <% }) %>
+                    <% }) %>
             </div>
         </section>
-        
+
         <a href="/grafico" class="graph-button text-decoration-none">
             <i class="bi bi-bar-chart-line text-white"></i>
         </a>
@@ -118,7 +123,7 @@
                 <i class="bi bi-trash3 text-white"></i>
             </p>
         </a>
-        
+
     </div>
     <script>
         // Exibição de Tooltips
@@ -130,7 +135,7 @@
             const valoresParaToggle = document.querySelectorAll('.valorTotal');
             const hideAmountIcons = document.querySelectorAll('.hideAmount');
             const valorOculto = "R$****,**";
-            
+
             hideAmountIcons.forEach(icon => {
                 icon.addEventListener('click', () => {
 
@@ -155,12 +160,15 @@
 
                     // Altera o ícone de olho para todos os ícones da classe
                     hideAmountIcons.forEach(i => {
-                        i.classList.toggle('bi-eye-slash'); 
+                        i.classList.toggle('bi-eye-slash');
                         i.classList.toggle('bi-eye');
                     });
                 });
             });
         });
+        setInterval(function () {
+            window.location.reload();
+        }, 40000);
     </script>
 
 </body>

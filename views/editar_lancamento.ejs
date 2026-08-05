@@ -36,11 +36,13 @@
                 <label for="tipo">Tipo</label>
                 <div class="radio-group">
                     <div class="radio-option">
-                        <input type="radio" id="entrada" name="tipo" value="Entrada" <%=lancamento.tipo === 'Entrada' ? 'checked' : '' %>>
+                        <input type="radio" id="entrada" name="tipo" value="Entrada" <%=lancamento.tipo==='Entrada'
+                            ? 'checked' : '' %>>
                         <label for="entrada">Entrada</label>
                     </div>
                     <div class="radio-option">
-                        <input type="radio" id="saida" name="tipo" value="Saída" <%=lancamento.tipo === 'Saída' ? 'checked' : '' %>>
+                        <input type="radio" id="saida" name="tipo" value="Saída" <%=lancamento.tipo==='Saída'
+                            ? 'checked' : '' %>>
                         <label for="saida">Saída</label>
                     </div>
                 </div>
@@ -50,7 +52,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="valor">Valor (R$)</label>
-                        <input type="number" id="valor" name="valor" step="0.01" placeholder="Ex: 1000,00" required value="<%=lancamento.valor%>">
+                        <input type="number" id="valor" name="valor" step="0.01" placeholder="Ex: 1000,00" required
+                            value="<%=lancamento.valor%>">
                     </div>
                 </div>
 
@@ -59,12 +62,18 @@
                         <label for="categoria">Categoria</label>
                         <select id="categoria" name="categoria" required>
                             <option value="" disabled selected> Selecionar </option>
-                            <option value="Salário" <%= lancamento.categoria === 'Salário' ? 'selected' : '' %>> Salário </option>
-                            <option value="Poupança" <%= lancamento.categoria === 'Poupança' ? 'selected' : '' %>> Poupança </option>
-                            <option value="Transporte" <%= lancamento.categoria === 'Transporte' ? 'selected' : '' %>> Transporte </option>
-                            <option value="Mercado" <%= lancamento.categoria === 'Mercado' ? 'selected' : '' %>> Mercado </option>
-                            <option value="Contas Fixas" <%= lancamento.categoria === 'Contas Fixas' ? 'selected' : '' %>> Contas Fixas </option>
-                            <option value="Emergência" <%= lancamento.categoria === 'Emergência' ? 'selected' : '' %>> Emergência </option>
+                            <option value="Salário" <%=lancamento.categoria==='Salário' ? 'selected' : '' %>> Salário
+                            </option>
+                            <option value="Poupança" <%=lancamento.categoria==='Poupança' ? 'selected' : '' %>> Poupança
+                            </option>
+                            <option value="Transporte" <%=lancamento.categoria==='Transporte' ? 'selected' : '' %>>
+                                Transporte </option>
+                            <option value="Mercado" <%=lancamento.categoria==='Mercado' ? 'selected' : '' %>> Mercado
+                            </option>
+                            <option value="Contas Fixas" <%=lancamento.categoria==='Contas Fixas' ? 'selected' : '' %>>
+                                Contas Fixas </option>
+                            <option value="Emergência" <%=lancamento.categoria==='Emergência' ? 'selected' : '' %>>
+                                Emergência </option>
                         </select>
                     </div>
                 </div>
@@ -74,7 +83,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="data">Data</label>
-                        <input type="date" id="data" name="data" required min="1999-01-01" max="2099-01-01" value="<%=lancamento.data%>">
+                        <input type="date" id="data" name="data" required min="1999-01-01" max="2099-01-01"
+                            value="<%=lancamento.data%>">
                     </div>
                 </div>
 
@@ -83,9 +93,12 @@
                         <label for="formaDePagamento">Forma de Pagamento</label>
                         <select id="formaDePagamento" name="formaDePagamento" required>
                             <option value="" disabled>Selecionar</option>
-                            <option value="contaCorrente" <%= lancamento.formaDePagamento === 'contaCorrente' ? 'selected' : '' %>>Conta Corrente</option>
-                            <option value="credito" <%= lancamento.formaDePagamento === 'credito' ? 'selected' : '' %>>Cartão de Crédito</option>
-                            <option value="dinheiro" <%= lancamento.formaDePagamento === 'dinheiro' ? 'selected' : '' %>>Dinheiro Físico</option>
+                            <option value="contaCorrente" <%=lancamento.formaDePagamento==='contaCorrente' ? 'selected'
+                                : '' %>>Conta Corrente</option>
+                            <option value="credito" <%=lancamento.formaDePagamento==='credito' ? 'selected' : '' %>
+                                >Cartão de Crédito</option>
+                            <option value="dinheiro" <%=lancamento.formaDePagamento==='dinheiro' ? 'selected' : '' %>
+                                >Dinheiro Físico</option>
                         </select>
                     </div>
                 </div>
@@ -93,7 +106,8 @@
 
             <div class="form-group">
                 <label for="descricao">Descrição</label>
-                <input type="text" id="descricao" name="descricao" placeholder="Ex: Pagamento da conta de energia" required value="<%=lancamento.descricao%>">
+                <input type="text" id="descricao" name="descricao" placeholder="Ex: Pagamento da conta de energia"
+                    required value="<%=lancamento.descricao%>">
             </div>
 
             <div class="form-group">
@@ -163,6 +177,10 @@
         });
 
         updateColors();
+
+        setInterval(function () {
+            window.location.reload();
+        }, 40000);
     </script>
 </body>
 
